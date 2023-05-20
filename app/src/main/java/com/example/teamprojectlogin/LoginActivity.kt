@@ -22,8 +22,7 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.passwordArea.text.toString()
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        val intent = Intent(this, MypageActivity::class.java)
+                    if (task.isSuccessful) {val intent = Intent(this, NaviActivity::class.java)
                         startActivity(intent)
                         Toast.makeText(this, "로그인 성공", Toast.LENGTH_LONG).show()
 

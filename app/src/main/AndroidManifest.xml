@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.teamprojectlogin">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,6 +17,9 @@
         android:theme="@style/Theme.TeamProjectLogin"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".NaviActivity"
+            android:exported="false" />
         <activity
             android:name=".MypageActivity"
             android:exported="false" />
@@ -37,8 +41,7 @@
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="NCMvk3zIUYvV5tT+5b5ABsaYO90="/>
-
+            android:value="NCMvk3zIUYvV5tT+5b5ABsaYO90=" />
     </application>
 
 </manifest>
