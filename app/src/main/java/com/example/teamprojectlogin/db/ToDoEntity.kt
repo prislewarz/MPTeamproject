@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class ToDoEntity ( // ❶ 중괄호 아닌 소괄호입니다.
     @PrimaryKey(autoGenerate = true) var id : Int? = null, // ❷
     @ColumnInfo(name="title") val title : String,
-    @ColumnInfo(name="importance") val importance : String
+    @ColumnInfo(name="importance") val importance : String,
+    @ColumnInfo(name="isChecked") var isChecked: Boolean
 )

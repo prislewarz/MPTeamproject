@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.example.teamprojectlogin.databinding.ActivityTodoBinding
 import com.example.teamprojectlogin.db.AppDatabase
 import com.example.teamprojectlogin.db.ToDoDao
@@ -48,7 +49,7 @@ class TodoActivity : AppCompatActivity(), OnItemLongClickListener { // ❶
     private fun setRecyclerView() {
         // 리사이클러뷰 설정
         runOnUiThread {
-            adapter = TodoRecyclerViewAdapter(todoList, this) // ❷ 어댑터 객체 할당
+            adapter = TodoRecyclerViewAdapter(todoList, this, todoDao) // ❷ 어댑터 객체 할당
             binding.recyclerView.adapter = adapter // 리사이클러뷰 어댑터로 위에서 만든 어댑터 설정
             binding.recyclerView.layoutManager = LinearLayoutManager(this) // 레이아웃 매니저 설정
         }

@@ -2,14 +2,21 @@ package com.example.teamprojectlogin
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teamprojectlogin.databinding.ItemTodoBinding
 import com.example.teamprojectlogin.db.ToDoEntity
+import com.example.teamprojectlogin.db.ToDoDao
 
-class TodoRecyclerViewAdapter(private val todoList: ArrayList<ToDoEntity>, private val listener : OnItemLongClickListener) :
+class TodoRecyclerViewAdapter(
+    private val todoList: ArrayList<ToDoEntity>,
+    private val listener: OnItemLongClickListener,
+    private val todoDao: ToDoDao
+) :
     RecyclerView.Adapter<TodoRecyclerViewAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root) {
+        val checkBox: CheckBox = binding.checkBox
         val tv_importance = binding.tvImportance
         val tv_title = binding.tvTitle
 
@@ -25,18 +32,27 @@ class TodoRecyclerViewAdapter(private val todoList: ArrayList<ToDoEntity>, priva
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val todoData = todoList[position]
+        var todoData = todoList[position]
+
+        holder.checkBox.isChecked = todoData.isChecked
+        holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
+            todoData.isChecked = isChecked
+            Thread {
+                todoDao.updateIsChecked(todoData.id!!, isChecked)
+            }.start()
+        }
+
         // 색상 변경
         when (todoData.importance) {
-            "저녁" -> {
+            "△" -> {
                 holder.tv_importance.setBackgroundResource(R.color.red)
             }
 
-            "점심" -> {
+            "○" -> {
                 holder.tv_importance.setBackgroundResource(R.color.yellow)
             }
 
-            "아침" -> {
+            "☆" -> {
                 holder.tv_importance.setBackgroundResource(R.color.green)
             }
         }

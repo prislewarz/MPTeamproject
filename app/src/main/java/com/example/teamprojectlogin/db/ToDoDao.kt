@@ -15,4 +15,7 @@ interface ToDoDao {
 
     @Delete
     fun deleteTodo(todo : ToDoEntity)
+
+    @Query("UPDATE ToDoEntity SET isChecked = :isChecked WHERE id = :id")
+    fun updateIsChecked(id: Int, isChecked: Boolean)
 }

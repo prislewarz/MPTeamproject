@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
-        android:text="중요도"
+        android:text="중요도/긴급도"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edt_title" />
 
@@ -54,19 +54,19 @@
             android:id="@+id/btn_low"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="낮음" />
+            android:text="△" />
 
         <RadioButton
             android:id="@+id/btn_middle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="중간" />
+            android:text="○" />
 
         <RadioButton
             android:id="@+id/btn_high"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="높음" />
+            android:text="☆" />
 
     </RadioGroup>
 

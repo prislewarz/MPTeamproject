@@ -41,15 +41,15 @@ class AddTodoActivity : AppCompatActivity() {
         // 어떤 버튼이 눌렸는지 확인하고 값을 지정해줍니다
         when (binding.radioGroup.checkedRadioButtonId) {
             R.id.btn_high -> {
-                todoImportance = "저녁"
+                todoImportance = "☆"
             }
 
             R.id.btn_middle -> {
-                todoImportance = "점심"
+                todoImportance = "○"
             }
 
             R.id.btn_low -> {
-                todoImportance = "아침"
+                todoImportance = "△"
             }
 
             else -> {
@@ -61,7 +61,7 @@ class AddTodoActivity : AppCompatActivity() {
             Toast.makeText(this, "모든 항목을 채워주세요.", Toast.LENGTH_SHORT).show()
         } else {
             Thread {
-                todoDao.insertTodo(ToDoEntity(null, todoTitle, todoImportance))
+                todoDao.insertTodo(ToDoEntity(null, todoTitle, todoImportance,isChecked = false))
                 runOnUiThread { // 아래 작업은 UI 스레드에서 실행해주어야 합니다.
                     Toast.makeText(this, "추가되었습니다.", Toast.LENGTH_SHORT).show()
                     finish() // AddTodoActivity 종료, 다시 MainActivity로 돌아감
