@@ -1,5 +1,14 @@
 <resources>
-    <string name="app_name">TeamProjectLogin</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">조깅 계획 등록</string>
+    <!-- MainActivity text -->
+    <string name="add_todo">조깅 계획 추가하기</string>
+    <!-- AddTodoActivity text -->
+    <string name="title">조깅 계획</string>
+    <string name="hint_title">내용을 입력해주세요.</string>
+    <string name="importance">대략적인 시간대</string>
+    <string name="importance_low">아침</string>
+    <string name="importance_middle">점심</string>
+    <string name="importance_high">저녁</string>
+    <string name="completion">완료</string>
+    <string name="hello_blank_fragment"></string>
 </resources>
