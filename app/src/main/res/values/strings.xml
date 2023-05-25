@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">조깅 계획 등록</string>
+    <string name="app_name"></string>
     <!-- MainActivity text -->
     <string name="add_todo">조깅 계획 추가하기</string>
     <!-- AddTodoActivity text -->

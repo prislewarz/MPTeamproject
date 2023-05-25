@@ -12,7 +12,6 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.teamprojectlogin.databinding.NavigationDrawerBinding
-import com.example.teamprojectlogin.databinding.AppBarMainBinding
 
 class NavigationDrawer : AppCompatActivity() {
 
