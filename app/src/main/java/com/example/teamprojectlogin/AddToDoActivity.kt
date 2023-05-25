@@ -1,5 +1,9 @@
 package com.example.teamprojectlogin
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -80,6 +84,21 @@ class AddTodoActivity : AppCompatActivity() {
                 // insertTodo 메소드를 수정하여 새로운 ToDoEntity를 데이터베이스에 삽입할 때 선택된 날짜와 시간을 포함하도록 합니다.
                 todoDao.insertTodo(ToDoEntity(null, todoTitle, todoMonth, todoDay, todoHour, todoMinute, todoImportance, isChecked = false))
                 runOnUiThread { // 아래 작업은 UI 스레드에서 실행해주어야 합니다.
+                    // 알람을 설정합니다.
+                    val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                    val intent = Intent(this, AlarmReceiver::class.java)
+                    val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
+
+                    // 알람 시간을 설정합니다.
+                    val calendar = Calendar.getInstance()
+                    calendar.set(Calendar.MONTH, todoMonth)
+                    calendar.set(Calendar.DAY_OF_MONTH, todoDay)
+                    calendar.set(Calendar.HOUR_OF_DAY, todoHour)
+                    calendar.set(Calendar.MINUTE, todoMinute)
+
+                    // 알람을 설정합니다.
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
+
                     Toast.makeText(this, "추가되었습니다.", Toast.LENGTH_SHORT).show()
                     finish() // AddTodoActivity 종료, 다시 MainActivity로 돌아감
                 }
