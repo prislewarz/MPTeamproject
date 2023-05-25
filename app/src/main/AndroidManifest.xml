@@ -43,8 +43,8 @@
         </activity>
 
         <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="NCMvk3zIUYvV5tT+5b5ABsaYO90=" />
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBAuSBp_VZ2ju9opX9DJydSy7CilizEzCY" />
     </application>
 
 </manifest>
