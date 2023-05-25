@@ -1,9 +1,13 @@
 package com.example.teamprojectlogin
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.teamprojectlogin.databinding.ActivityMapBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -19,11 +23,14 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback{
     private var mMap: GoogleMap? = null
     var currentLat: Double = 0.0 //MainActivity.kt에서 전달된 위도
     var currentLng: Double = 0.0 //MainActivity.kt에서 전달된 경도
+    private val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // 위치 권한 확인
+        checkLocationPermission()
 
         //MainActivity.kt 에서 intent로 전달된 값을 가져옵니다.
         currentLat = intent.getDoubleExtra("currentLat", 0.0)
@@ -81,5 +88,43 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback{
             }
         }
     }
+    // 위치 권한 확인 함수
+    private fun checkLocationPermission() {
+        // 위치 권한이 있는지 확인
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // 위치 권한이 없으면 권한 요청
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
+            )
+        }
+    }
+
+    // 권한 요청 결과 처리 함수
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION -> {
+                // 위치 권한 요청 결과 처리
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 위치 권한이 허용된 경우
+                    // 위치 정보를 사용하는 코드를 여기에 작성합니다.
+                } else {
+                    // 위치 권한이 거부된 경우
+                    // 위치 정보를 사용하지 않는 코드를 여기에 작성합니다.
+                }
+            }
+        }
+    }
+
+
 
 }

@@ -98,7 +98,7 @@ class LocationProvider(val context: Context) {
         return location?.latitude ?: 0.0
     }
 
-    //경도 정보르 가져오는 함수입니다.
+    //경도 정보를 가져오는 함수입니다.
     fun getLocationLongitude(): Double {
         return location?.longitude ?: 0.0
     }
