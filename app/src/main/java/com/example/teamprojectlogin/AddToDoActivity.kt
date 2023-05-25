@@ -7,24 +7,40 @@ import com.example.teamprojectlogin.databinding.ActivityAddTodoBinding
 import com.example.teamprojectlogin.db.AppDatabase
 import com.example.teamprojectlogin.db.ToDoDao
 import com.example.teamprojectlogin.db.ToDoEntity
+import java.util.Calendar
 
 /**
  * 할 일 추가 클래스
  * */
 class AddTodoActivity : AppCompatActivity() {
-
     lateinit var binding: ActivityAddTodoBinding
     lateinit var db: AppDatabase
     lateinit var todoDao: ToDoDao
 
+    private var todoHour: Int = 0
+    private var todoMinute: Int = 0
+    private var todoMonth: Int = 0
+    private var todoDay: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityAddTodoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         db = AppDatabase.getInstance(this)!!
         todoDao = db.getTodoDao()
+
+        val calendar = Calendar.getInstance()
+        todoMonth = calendar.get(Calendar.MONTH)
+        todoDay = calendar.get(Calendar.DAY_OF_MONTH)
+        todoHour = calendar.get(Calendar.HOUR_OF_DAY)
+        todoMinute = calendar.get(Calendar.MINUTE)
+
+        binding.timePicker.setIs24HourView(true)
+        binding.timePicker.setOnTimeChangedListener { _, hourOfDay, minute ->
+            todoHour = hourOfDay
+            todoMinute = minute
+        }
 
         binding.btnCompletion.setOnClickListener {
             insertTodo()
@@ -61,7 +77,8 @@ class AddTodoActivity : AppCompatActivity() {
             Toast.makeText(this, "모든 항목을 채워주세요.", Toast.LENGTH_SHORT).show()
         } else {
             Thread {
-                todoDao.insertTodo(ToDoEntity(null, todoTitle, todoImportance,isChecked = false))
+                // insertTodo 메소드를 수정하여 새로운 ToDoEntity를 데이터베이스에 삽입할 때 선택된 날짜와 시간을 포함하도록 합니다.
+                todoDao.insertTodo(ToDoEntity(null, todoTitle, todoMonth, todoDay, todoHour, todoMinute, todoImportance, isChecked = false))
                 runOnUiThread { // 아래 작업은 UI 스레드에서 실행해주어야 합니다.
                     Toast.makeText(this, "추가되었습니다.", Toast.LENGTH_SHORT).show()
                     finish() // AddTodoActivity 종료, 다시 MainActivity로 돌아감

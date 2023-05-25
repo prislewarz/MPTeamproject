@@ -32,6 +32,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="203dp" />
+
     <TextView
         android:id="@+id/importance"
         android:layout_width="wrap_content"
@@ -46,9 +53,10 @@
         android:id="@+id/radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/importance">
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/importance"
+        tools:layout_editor_absoluteX="-32dp">
 
         <RadioButton
             android:id="@+id/btn_low"
