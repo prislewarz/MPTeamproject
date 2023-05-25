@@ -36,13 +36,18 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+        </activity>
+        <activity android:name=".LocationActivity"
+            android:exported="true"/>
+        <activity android:name=".MapActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <receiver android:name=".AlarmReceiver" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBAuSBp_VZ2ju9opX9DJydSy7CilizEzCY" />

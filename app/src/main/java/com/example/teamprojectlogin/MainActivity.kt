@@ -31,16 +31,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, JoinActivity::class.java)
             startActivity(intent)
         }
-        binding.noAccountBtn.setOnClickListener {
-            auth.signInAnonymously()
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(this, "비회원 로그인 성공", Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(this, "비회원 로그인 실패", Toast.LENGTH_LONG).show()
-                    }
-                }
-        }
+
     }
 }
 
