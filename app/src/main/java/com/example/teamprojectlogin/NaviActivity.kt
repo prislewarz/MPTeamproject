@@ -25,9 +25,6 @@ class NaviActivity : AppCompatActivity() {
 
         binding.navigationView.setOnItemSelectedListener { item ->
             when(item.itemId) {
-                R.id.calenderFragment -> setFragment(TAG_CALENDER, CalenderFragment())
-                R.id.homeFragment -> setFragment(TAG_HOME, HomeFragment())
-                R.id.myPageFragment-> setFragment(TAG_MY_PAGE, MyPageFragment())
             }
             true
         }

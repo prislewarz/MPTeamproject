@@ -108,7 +108,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
             AlertDialog.Builder(this)
-                .setMessage("Total Distance: ${totalDistance / 1000} km")
+                .setMessage("${totalDistance / 1000} km만큼 움직였습니다!")
                 .setPositiveButton("OK") { dialog, _ ->
                     dialog.dismiss()
                 }
