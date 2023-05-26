@@ -4,7 +4,9 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -15,8 +17,9 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.PolylineOptions
 
-class MapActivity : AppCompatActivity() ,OnMapReadyCallback{
+class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     lateinit var binding: ActivityMapBinding
 
@@ -24,6 +27,7 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback{
     var currentLat: Double = 0.0 //MainActivity.kt에서 전달된 위도
     var currentLng: Double = 0.0 //MainActivity.kt에서 전달된 경도
     private val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
+    private val locations = mutableListOf<LatLng>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,13 +44,7 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback{
         mapFragment?.getMapAsync(this)
 
         binding.btnCheckHere.setOnClickListener {
-            mMap?.let {
-                val intent = Intent()
-                intent.putExtra("latitude", it.cameraPosition.target.latitude)
-                intent.putExtra("longitude", it.cameraPosition.target.longitude)
-                setResult(Activity.RESULT_OK, intent)
-                finish()
-            }
+            drawPath()
         }
     }
 
@@ -54,7 +52,7 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback{
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        mMap?.let{
+        mMap?.let {
             val currentLocation = LatLng(currentLat, currentLng)
             it.setMaxZoomPreference(20.0f) //줌 최대값 설정
             it.setMinZoomPreference(12.0f) //줌 최솟값 설정
@@ -74,8 +72,8 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback{
     }
 
     //마커 설정하는 함수
-    private fun setMarker(){
-        mMap?.let{
+    private fun setMarker() {
+        mMap?.let {
             it.clear() //지도에 있는 마커를 먼저 삭제
             val markerOptions = MarkerOptions()
             markerOptions.position(it.cameraPosition.target) //마커의 위치 설정
@@ -88,6 +86,36 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback{
             }
         }
     }
+
+    private fun drawPath() {
+        mMap?.let { map ->
+            val options = PolylineOptions().addAll(locations)
+            map.addPolyline(options)
+
+            var totalDistance = 0f
+            for (i in 0 until locations.size - 1) {
+                val start = locations[i]
+                val end = locations[i + 1]
+                val distance = FloatArray(1)
+                Location.distanceBetween(
+                    start.latitude,
+                    start.longitude,
+                    end.latitude,
+                    end.longitude,
+                    distance
+                )
+                totalDistance += distance[0]
+            }
+
+            AlertDialog.Builder(this)
+                .setMessage("Total Distance: ${totalDistance / 1000} km")
+                .setPositiveButton("OK") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
+        }
+    }
+
     // 위치 권한 확인 함수
     private fun checkLocationPermission() {
         // 위치 권한이 있는지 확인
@@ -115,8 +143,7 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback{
             PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION -> {
                 // 위치 권한 요청 결과 처리
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // 위치 권한이 허용된 경우
-                    // 위치 정보를 사용하는 코드를 여기에 작성합니다.
+
                 } else {
                     // 위치 권한이 거부된 경우
                     // 위치 정보를 사용하지 않는 코드를 여기에 작성합니다.
@@ -124,7 +151,4 @@ class MapActivity : AppCompatActivity() ,OnMapReadyCallback{
             }
         }
     }
-
-
-
 }
