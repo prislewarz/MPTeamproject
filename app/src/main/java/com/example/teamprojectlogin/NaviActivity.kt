@@ -11,7 +11,7 @@ import com.google.android.gms.maps.MapFragment
 
 
 private const val TAG_CALENDER = "calender_fragment"
-private const val TAG_MAP = "todo_fragment"
+private const val TAG_MAP = "map_fragment"
 private const val TAG_MY_PAGE = "my_page_fragment"
 
 class NaviActivity : AppCompatActivity() {
@@ -27,7 +27,7 @@ class NaviActivity : AppCompatActivity() {
         binding.navigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.calenderFragment -> setFragment(TAG_CALENDER, CalendarFragment())
-                R.id.homeFragment -> setFragment(TAG_MAP, MapFragment())
+                R.id.MapFragment -> setFragment(TAG_MAP, MapFragment())
                 R.id.todoFragment -> setFragment(TAG_MY_PAGE, TodoFragment())
             }
             true
