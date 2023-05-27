@@ -10,9 +10,9 @@ import com.example.teamprojectlogin.databinding.ActivityNaviBinding
 import com.google.android.gms.maps.MapFragment
 
 
-private const val TAG_CALENDER = "calender_fragment"
+private const val TAG_CALENDAR = "calendar_fragment"
 private const val TAG_MAP = "map_fragment"
-private const val TAG_MY_PAGE = "my_page_fragment"
+private const val TAG_TODO = "todo_fragment"
 
 class NaviActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNaviBinding
@@ -22,13 +22,15 @@ class NaviActivity : AppCompatActivity() {
         binding = ActivityNaviBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setFragment(TAG_MAP, MapFragment())
+        setFragment(TAG_MAP, com.example.teamprojectlogin.MapFragment())
 
         binding.navigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.calenderFragment -> setFragment(TAG_CALENDER, CalendarFragment())
-                R.id.MapFragment -> setFragment(TAG_MAP, MapFragment())
-                R.id.todoFragment -> setFragment(TAG_MY_PAGE, TodoFragment())
+                R.id.calendarFragment -> setFragment(TAG_CALENDAR, CalendarFragment())
+                R.id.mapFragment -> setFragment(TAG_MAP,
+                    com.example.teamprojectlogin.MapFragment()
+                )
+                R.id.todoFragment -> setFragment(TAG_TODO, TodoFragment())
             }
             true
         }
@@ -42,33 +44,33 @@ class NaviActivity : AppCompatActivity() {
             fragTransaction.add(R.id.mainFrameLayout, fragment, tag)
         }
 
-        val calender = manager.findFragmentByTag(TAG_CALENDER)
-        val home = manager.findFragmentByTag(TAG_MAP)
-        val myPage = manager.findFragmentByTag(TAG_MY_PAGE)
+        val calendar = manager.findFragmentByTag(TAG_CALENDAR)
+        val map = manager.findFragmentByTag(TAG_MAP)
+        val todo = manager.findFragmentByTag(TAG_TODO)
 
-        if (calender != null) {
-            fragTransaction.hide(calender)
+        if (calendar != null) {
+            fragTransaction.hide(calendar)
         }
 
-        if (home != null) {
-            fragTransaction.hide(home)
+        if (map != null) {
+            fragTransaction.hide(map)
         }
 
-        if (myPage != null) {
-            fragTransaction.hide(myPage)
+        if (todo != null) {
+            fragTransaction.hide(todo)
         }
 
-        if (tag == TAG_CALENDER) {
-            if (calender != null) {
-                fragTransaction.show(calender)
+        if (tag == TAG_CALENDAR) {
+            if (calendar != null) {
+                fragTransaction.show(calendar)
             }
         } else if (tag == TAG_MAP) {
-            if (home != null) {
-                fragTransaction.show(home)
+            if (map != null) {
+                fragTransaction.show(map)
             }
-        } else if (tag == TAG_MY_PAGE) {
-            if (myPage != null) {
-                fragTransaction.show(myPage)
+        } else if (tag == TAG_TODO) {
+            if (todo != null) {
+                fragTransaction.show(todo)
             }
         }
 

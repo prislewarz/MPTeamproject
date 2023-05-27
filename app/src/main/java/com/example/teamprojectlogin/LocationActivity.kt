@@ -68,7 +68,7 @@ class LocationActivity : AppCompatActivity() {
 
     private fun setFab() {
         binding.fab.setOnClickListener {
-            val intent = Intent(this, MapActivity::class.java)
+            val intent = Intent(this, MapFragment::class.java)
             intent.putExtra("currentLat", latitude)
             intent.putExtra("currentLng", longitude)
             startMapActivityResult.launch(intent)
