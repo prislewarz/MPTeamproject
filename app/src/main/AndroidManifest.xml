@@ -19,22 +19,20 @@
         tools:targetApi="31">
         <activity
             android:name=".NaviActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MypageActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".JoinActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
-        <activity android:name=".TodoActivity"
+        <activity android:name=".TodoFragment"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".AddTodoActivity"
             android:exported="true">
@@ -45,7 +43,7 @@
         </activity>
         <activity android:name=".LocationActivity"
             android:exported="false"/>
-        <activity android:name=".MapActivity"
+        <activity android:name=".MapFragment"
             android:exported="true">
         </activity>
         <activity android:name=".NavigationDrawer"
