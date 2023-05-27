@@ -17,7 +17,7 @@
         android:layout_marginStart="20dp"
         android:text="2"
         android:gravity="center"
-        android:textSize="19sp"
+        android:textSize="20sp"
         android:textColor="@color/white"
         />
 
@@ -28,17 +28,19 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="20dp"
         android:text="GO TO GYM"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/tv_importance"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.506" />
+        app:layout_constraintVertical_bias="0.691" />
 
     <TextView
         android:id="@+id/timeView"
-        android:layout_width="8dp"
-        android:layout_height="16dp"
+        android:layout_width="222dp"
+        android:layout_height="29dp"
+        android:text="오후 6시 15분"
         android:textSize="18sp"
         tools:layout_editor_absoluteX="80dp"
         tools:layout_editor_absoluteY="26dp" />

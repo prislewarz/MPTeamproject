@@ -44,7 +44,10 @@ class AddTodoActivity : AppCompatActivity() {
         binding.timePicker.setOnTimeChangedListener { _, hourOfDay, minute ->
             todoHour = hourOfDay
             todoMinute = minute
+            val time = String.format("%02d:%02d", hourOfDay, minute)
+            binding.timeView.text = time
         }
+
 
         binding.btnCompletion.setOnClickListener {
             insertTodo()
