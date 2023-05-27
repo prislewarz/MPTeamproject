@@ -28,7 +28,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="20dp"
         android:text="GO TO GYM"
-        android:textSize="20dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -41,7 +41,7 @@
         android:layout_width="222dp"
         android:layout_height="29dp"
         android:text="오후 6시 15분"
-        android:textSize="18sp"
+        android:textSize="30sp"
         tools:layout_editor_absoluteX="80dp"
         tools:layout_editor_absoluteY="26dp" />
 

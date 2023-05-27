@@ -94,10 +94,12 @@ class AddTodoActivity : AppCompatActivity() {
 
                     // 알람 시간을 설정합니다.
                     val calendar = Calendar.getInstance()
-                    calendar.set(Calendar.MONTH, todoMonth)
                     calendar.set(Calendar.DAY_OF_MONTH, todoDay)
                     calendar.set(Calendar.HOUR_OF_DAY, todoHour)
                     calendar.set(Calendar.MINUTE, todoMinute)
+                    calendar.set(Calendar.SECOND, 0)
+
+
 
                     // 알람을 설정합니다.
                     alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, pendingIntent)
