@@ -10,7 +10,7 @@ abstract class AppDatabase : RoomDatabase() { // ❷ 조건 2
     abstract fun getTodoDao() : ToDoDao // ❸ 조건 3
 
     companion object {
-        val databaseName = "db_todo" // 데이터베이스 이름입니다. 임의로 지정해주어도 됩니다.
+        val databaseName = "db_todo" //
         var appDatabase : AppDatabase? = null
 
 
