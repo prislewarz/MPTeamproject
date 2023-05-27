@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:letterSpacing="-0.035"
-            android:text="조깅 시간 측정"
+            android:text="움직인 거리 측정"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold" />

@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name"></string>
     <!-- MainActivity text -->
-    <string name="add_todo">조깅 계획 추가하기</string>
+    <string name="add_todo">계획 추가하기</string>
     <!-- AddTodoActivity text -->
-    <string name="title">조깅 계획</string>
+    <string name="title">계획 추가</string>
     <string name="hint_title">내용을 입력해주세요.</string>
     <string name="importance">대략적인 시간대</string>
     <string name="importance_low">△</string>
@@ -21,4 +21,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name="kakao_native_app_key">086f32a3a048cf5b570bd3c728e185da</string>
+    <!-- kakao${kakao_native_app_key} 의 구조다. -->
+    <string name="kakao_redirection_scheme">kakao086f32a3a048cf5b570bd3c728e185da</string>
 </resources>

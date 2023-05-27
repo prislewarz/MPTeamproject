@@ -1,8 +1,10 @@
 package com.example.teamprojectlogin
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.teamprojectlogin.databinding.ActivityLoginBinding
@@ -22,7 +24,8 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.passwordArea.text.toString()
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {val intent = Intent(this, NaviActivity::class.java)
+                    if (task.isSuccessful) {
+                        val intent = Intent(this, NaviActivity::class.java)
                         startActivity(intent)
                         Toast.makeText(this, "로그인 성공", Toast.LENGTH_LONG).show()
 
@@ -30,6 +33,6 @@ class LoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "로그인 실패", Toast.LENGTH_LONG).show()
                     }
                 }
+            }
         }
     }
-}
