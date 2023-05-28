@@ -37,6 +37,10 @@ class TodoFragment : Fragment(), OnItemLongClickListener {
         getAllTodoList()
         return binding.root
     }
+    override fun onResume() {
+        super.onResume()
+        getAllTodoList()
+    }
 
     private fun getAllTodoList() {
         Thread {

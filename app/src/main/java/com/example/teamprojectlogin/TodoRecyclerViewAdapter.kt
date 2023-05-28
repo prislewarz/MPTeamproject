@@ -78,4 +78,5 @@ class TodoRecyclerViewAdapter(
             ItemTodoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
+
 }

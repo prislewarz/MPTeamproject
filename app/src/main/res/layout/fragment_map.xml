@@ -60,6 +60,6 @@
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
+
