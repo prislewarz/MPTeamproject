@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Address
 import android.location.Geocoder
 import android.location.LocationManager
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.teamprojectlogin.databinding.ActivityLocationBinding
+import com.google.android.gms.maps.model.PolylineOptions
 import java.io.IOException
 import java.util.*
 
@@ -54,6 +56,18 @@ class LocationActivity : AppCompatActivity() {
                 }
             }
         })
+    private val polylineOptions = PolylineOptions().width(5f).color(Color.BLUE)
+
+    val startMapFragmentResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult(), object : ActivityResultCallback<ActivityResult> {
+            override fun onActivityResult(result: ActivityResult?) {
+                if (result?.resultCode ?: Activity.RESULT_CANCELED == Activity.RESULT_OK) {
+                    latitude = result?.data?.getDoubleExtra("latitude", 0.0) ?: 0.0
+                    longitude = result?.data?.getDoubleExtra("longitude", 0.0) ?: 0.0
+                    updateUI()
+                }
+            }
+        })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +85,7 @@ class LocationActivity : AppCompatActivity() {
             val intent = Intent(this, MapFragment::class.java)
             intent.putExtra("currentLat", latitude)
             intent.putExtra("currentLng", longitude)
-            startMapActivityResult.launch(intent)
+            startMapFragmentResult.launch(intent)
         }
     }
 
